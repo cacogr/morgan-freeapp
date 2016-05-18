@@ -1,4 +1,4 @@
-package com.arte.photoapp;
+package com.arte.morganfreeapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

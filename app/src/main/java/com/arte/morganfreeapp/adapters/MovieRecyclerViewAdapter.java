@@ -1,4 +1,4 @@
-package com.arte.photoapp.adapters;
+package com.arte.morganfreeapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,24 +8,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.arte.photoapp.R;
-import com.arte.photoapp.model.Photo;
-import com.arte.photoapp.network.RequestQueueManager;
+import com.arte.morganfreeapp.R;
+import com.arte.morganfreeapp.model.Movie;
+import com.arte.morganfreeapp.network.RequestQueueManager;
 
 import java.util.List;
 
-public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecyclerViewAdapter.ViewHolder> {
+public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
 
     public interface Events {
-        void onPhotoClicked(Photo photo);
+        void onPhotoClicked(Movie movie);
     }
 
-    private final List<Photo> mPhotoList;
+    private final List<Movie> mMovieList;
     private Events mEvents;
     private Context mContext;
 
-    public PhotoRecyclerViewAdapter(List<Photo> items, Context context, Events events) {
-        mPhotoList = items;
+    public MovieRecyclerViewAdapter(List<Movie> items, Context context, Events events) {
+        mMovieList = items;
         mContext = context;
         mEvents = events;
     }
@@ -39,20 +39,20 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Photo photo = mPhotoList.get(position);
-        holder.mTitle.setText(photo.getTitle());
-        holder.mThumbnail.setImageUrl(photo.getThumbnailUrl(), RequestQueueManager.getInstance(mContext).getImageLoader());
+        final Movie movie = mMovieList.get(position);
+        holder.mTitle.setText(movie.getTitle());
+        holder.mThumbnail.setImageUrl(movie.getThumbnailUrl(), RequestQueueManager.getInstance(mContext).getImageLoader());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEvents.onPhotoClicked(photo);
+                mEvents.onPhotoClicked(movie);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mPhotoList.size();
+        return mMovieList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

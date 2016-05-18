@@ -1,4 +1,4 @@
-package com.arte.photoapp.fragments;
+package com.arte.morganfreeapp.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,35 +9,32 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.arte.photoapp.R;
-import com.arte.photoapp.activities.PhotoDetailActivity;
-import com.arte.photoapp.activities.PhotoListActivity;
-import com.arte.photoapp.model.Photo;
-import com.arte.photoapp.network.GetPhotoRequest;
-import com.arte.photoapp.network.RequestQueueManager;
+import com.arte.morganfreeapp.R;
+import com.arte.morganfreeapp.model.Movie;
+import com.arte.morganfreeapp.network.GetMovieRequest;
+import com.arte.morganfreeapp.network.RequestQueueManager;
 
-public class PhotoDetailFragment extends Fragment implements GetPhotoRequest.Callbacks {
+public class MovieDetailFragment extends Fragment implements GetMovieRequest.Callbacks {
 
-    public static final String ARG_PHOTO_ID = "photo_id";
+    public static final String ARG_MOVIE_ID = "photo_id";
 
-    private Photo mPhoto;
+    private Movie mMovie;
     private NetworkImageView mImage;
     private ProgressDialog mProgressDialog;
 
-    public PhotoDetailFragment() {
+    public MovieDetailFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_PHOTO_ID)) {
-            String photoId = getArguments().getString(ARG_PHOTO_ID);
-            GetPhotoRequest request = new GetPhotoRequest(getActivity(), this, photoId);
+        if (getArguments().containsKey(ARG_MOVIE_ID)) {
+            String photoId = getArguments().getString(ARG_MOVIE_ID);
+            GetMovieRequest request = new GetMovieRequest(getActivity(), this, photoId);
             request.execute();
         }
     }
@@ -63,26 +60,26 @@ public class PhotoDetailFragment extends Fragment implements GetPhotoRequest.Cal
         View rootView = inflater.inflate(R.layout.photo_detail, container, false);
 
         mImage = (NetworkImageView) rootView.findViewById(R.id.photo_image);
-        if (mPhoto != null) {
-            loadPhotoDetails(mPhoto);
+        if (mMovie != null) {
+            loadPhotoDetails(mMovie);
         }
 
         return rootView;
     }
 
-    private void loadPhotoDetails(Photo photo) {
-        mPhoto = photo;
+    private void loadPhotoDetails(Movie movie) {
+        mMovie = movie;
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
-            appBarLayout.setTitle(mPhoto.getTitle());
+            appBarLayout.setTitle(mMovie.getTitle());
         }
-        mImage.setImageUrl(photo.getUrl(), RequestQueueManager.getInstance(activity).getImageLoader());
+        mImage.setImageUrl(movie.getUrl(), RequestQueueManager.getInstance(activity).getImageLoader());
     }
 
     @Override
-    public void onGetPhotoSuccess(Photo photo) {
-        loadPhotoDetails(photo);
+    public void onGetPhotoSuccess(Movie movie) {
+        loadPhotoDetails(movie);
         mProgressDialog.hide();
     }
 

@@ -1,4 +1,4 @@
-package com.arte.photoapp.activities;
+package com.arte.morganfreeapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,20 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.arte.photoapp.R;
-import com.arte.photoapp.adapters.PhotoRecyclerViewAdapter;
-import com.arte.photoapp.fragments.PhotoDetailFragment;
-import com.arte.photoapp.model.Photo;
-import com.arte.photoapp.network.GetPhotoListRequest;
+import com.arte.morganfreeapp.R;
+import com.arte.morganfreeapp.adapters.MovieRecyclerViewAdapter;
+import com.arte.morganfreeapp.fragments.MovieDetailFragment;
+import com.arte.morganfreeapp.model.Movie;
+import com.arte.morganfreeapp.network.GetMovieListRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoListActivity extends AppCompatActivity implements PhotoRecyclerViewAdapter.Events, GetPhotoListRequest.Callbacks {
+public class MovieListActivity extends AppCompatActivity implements MovieRecyclerViewAdapter.Events, GetMovieListRequest.Callbacks {
 
     private boolean mTwoPane;
-    private List<Photo> mPhotoList = new ArrayList<>();
-    private PhotoRecyclerViewAdapter mAdapter;
+    private List<Movie> mMovieList = new ArrayList<>();
+    private MovieRecyclerViewAdapter mAdapter;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -32,18 +32,18 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoRecycle
     }
 
     @Override
-    public void onPhotoClicked(Photo photo) {
+    public void onPhotoClicked(Movie movie) {
         if (mTwoPane) {
             Bundle fragmentArguments = new Bundle();
-            fragmentArguments.putString(PhotoDetailFragment.ARG_PHOTO_ID, photo.getId());
-            PhotoDetailFragment fragment = new PhotoDetailFragment();
+            fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_ID, movie.getId());
+            MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(fragmentArguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.photo_detail_container, fragment)
                     .commit();
         } else {
-            Intent intent = new Intent(this, PhotoDetailActivity.class);
-            intent.putExtra(PhotoDetailFragment.ARG_PHOTO_ID, photo.getId());
+            Intent intent = new Intent(this, MovieDetailActivity.class);
+            intent.putExtra(MovieDetailFragment.ARG_MOVIE_ID, movie.getId());
             startActivity(intent);
         }
     }
@@ -56,7 +56,7 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoRecycle
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.photo_list);
         assert recyclerView != null;
-        mAdapter = new PhotoRecyclerViewAdapter(mPhotoList, this, this);
+        mAdapter = new MovieRecyclerViewAdapter(mMovieList, this, this);
         recyclerView.setAdapter(mAdapter);
 
         if (findViewById(R.id.photo_detail_container) != null) {
@@ -76,14 +76,14 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoRecycle
 
 
     private void loadPhotos() {
-        GetPhotoListRequest request = new GetPhotoListRequest(this, this);
+        GetMovieListRequest request = new GetMovieListRequest(this, this);
         request.execute();
     }
 
     @Override
-    public void onGetPhotoListSuccess(List<Photo> photoList) {
+    public void onGetPhotoListSuccess(List<Movie> movieList) {
         mProgressDialog.hide();
-        mPhotoList.addAll(photoList);
+        mMovieList.addAll(movieList);
         mAdapter.notifyDataSetChanged();
     }
 

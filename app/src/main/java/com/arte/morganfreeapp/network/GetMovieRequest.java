@@ -1,4 +1,4 @@
-package com.arte.photoapp.network;
+package com.arte.morganfreeapp.network;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,17 +7,17 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.arte.photoapp.model.Photo;
+import com.arte.morganfreeapp.model.Movie;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class GetPhotoRequest {
+public class GetMovieRequest {
 
-    private static final String GET_PHOTO_URL = "http://jsonplaceholder.typicode.com/photos/";
+    private static final String GET_MOVIE_URL = "http://netflixroulette.net/api/api.php?title=";
 
     public interface Callbacks {
-        void onGetPhotoSuccess(Photo photo);
+        void onGetPhotoSuccess(Movie movie);
 
         void onGetPhotoError();
     }
@@ -26,25 +26,25 @@ public class GetPhotoRequest {
     private Callbacks mCallbacks;
     private String mId;
 
-    public GetPhotoRequest(Context context, Callbacks callbacks, String id) {
+    public GetMovieRequest(Context context, Callbacks callbacks, String id) {
         mContext = context;
         mCallbacks = callbacks;
         mId = id;
     }
 
     public void execute() {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getGetPhotoUrl(mId), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getGetMovieUrl(mId), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Photo photo = new Photo();
+                Movie movie = new Movie();
                 try {
-                    photo.setId("" + response.getInt("id"));
-                    photo.setTitle(response.getString("title"));
-                    photo.setUrl(response.getString("url"));
-                    photo.setThumbnailUrl(response.getString("thumbnailUrl"));
-                    mCallbacks.onGetPhotoSuccess(photo);
+                    movie.setId("" + response.getInt("show_id"));
+                    movie.setTitle(response.getString("show_title"));
+                    movie.setUrl(response.getString("poster"));
+                    movie.setThumbnailUrl(response.getString("poster"));
+                    mCallbacks.onGetPhotoSuccess(movie);
                 } catch (JSONException e) {
-                    Log.e(GetPhotoListRequest.class.getSimpleName(), "Error deserializando JSON", e);
+                    Log.e(GetMovieListRequest.class.getSimpleName(), "Error deserializando JSON", e);
                     mCallbacks.onGetPhotoError();
                 }
             }
@@ -58,7 +58,7 @@ public class GetPhotoRequest {
         RequestQueueManager.getInstance(mContext).addToRequestQueue(request);
     }
 
-    private String getGetPhotoUrl(String id) {
-        return GET_PHOTO_URL + id;
+    private String getGetMovieUrl(String id) {
+        return GET_MOVIE_URL + id;
     }
 }

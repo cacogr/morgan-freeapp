@@ -1,16 +1,14 @@
-package com.arte.photoapp.model;
+package com.arte.morganfreeapp.model;
 
 
-import java.io.Serializable;
-
-public class Photo {
+public class Movie {
 
     private String id;
     private String title;
     private String url;
     private String thumbnailUrl;
 
-    public Photo() {
+    public Movie() {
 
     }
 
@@ -31,7 +29,7 @@ public class Photo {
     }
 
     public String getUrl() {
-        return "https://placeholdit.imgix.net/~text?txtsize=14&bg=" + url.substring(url.length() - 6, url.length()) + "&txt=BIGGERWORLD&w=150&h=150";
+        return url;
     }
 
     public void setUrl(String url) {
@@ -39,7 +37,7 @@ public class Photo {
     }
 
     public String getThumbnailUrl() {
-        return "https://placeholdit.imgix.net/~text?txtsize=14&bg=" + thumbnailUrl.substring(thumbnailUrl.length() - 6, thumbnailUrl.length()) + "&txt=HELLOWORLD&w=150&h=150";
+        return thumbnailUrl;
     }
 
     public void setThumbnailUrl(String thumbnailUrl) {

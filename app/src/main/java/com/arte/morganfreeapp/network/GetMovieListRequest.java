@@ -1,4 +1,4 @@
-package com.arte.photoapp.network;
+package com.arte.morganfreeapp.network;
 
 
 import android.content.Context;
@@ -8,7 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.arte.photoapp.model.Photo;
+import com.arte.morganfreeapp.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,12 +17,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetPhotoListRequest {
+public class GetMovieListRequest {
 
-    private static final String PHOTO_LIST_URL = "http://jsonplaceholder.typicode.com/photos";
+    private static final String MOVIE_LIST_URL = "http://netflixroulette.net/api/api.php?actor=Morgan%20Freeman";
 
     public interface Callbacks {
-        void onGetPhotoListSuccess(List<Photo> photoList);
+        void onGetPhotoListSuccess(List<Movie> movieList);
 
         void onGetPhotoListError();
     }
@@ -30,36 +30,36 @@ public class GetPhotoListRequest {
     private Context mContext;
     private Callbacks mCallbacks;
 
-    public GetPhotoListRequest(Context context, Callbacks callbacks) {
+    public GetMovieListRequest(Context context, Callbacks callbacks) {
         mContext = context;
         mCallbacks = callbacks;
     }
 
     public void execute() {
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, PHOTO_LIST_URL, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, MOVIE_LIST_URL, null, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
-                List<Photo> photoList = new ArrayList<>();
+                List<Movie> movieList = new ArrayList<>();
 
                 for (int i = 0; i < response.length(); i++) {
-                    Photo photo = new Photo();
+                    Movie movie = new Movie();
                     try {
                         JSONObject currentObject = response.getJSONObject(i);
-                        photo.setId("" + currentObject.getInt("id"));
-                        photo.setTitle(currentObject.getString("title"));
-                        photo.setUrl(currentObject.getString("url"));
-                        photo.setThumbnailUrl(currentObject.getString("thumbnailUrl"));
+                        movie.setId("" + currentObject.getInt("show_id"));
+                        movie.setTitle(currentObject.getString("show_title"));
+                        movie.setUrl(currentObject.getString("poster"));
+                        movie.setThumbnailUrl(currentObject.getString("poster"));
                     } catch (JSONException e) {
-                        Log.e(GetPhotoListRequest.class.getSimpleName(), "Error deserializando JSON", e);
+                        Log.e(GetMovieListRequest.class.getSimpleName(), "Error deserializando JSON", e);
                         mCallbacks.onGetPhotoListError();
                         return;
                     }
 
-                    photoList.add(photo);
+                    movieList.add(movie);
                 }
 
-                mCallbacks.onGetPhotoListSuccess(photoList);
+                mCallbacks.onGetPhotoListSuccess(movieList);
             }
         }, new Response.ErrorListener() {
 

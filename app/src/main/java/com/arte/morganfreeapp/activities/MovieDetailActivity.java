@@ -1,6 +1,5 @@
-package com.arte.photoapp.activities;
+package com.arte.morganfreeapp.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -9,10 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.arte.photoapp.R;
-import com.arte.photoapp.fragments.PhotoDetailFragment;
+import com.arte.morganfreeapp.R;
+import com.arte.morganfreeapp.fragments.MovieDetailFragment;
 
-public class PhotoDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            NavUtils.navigateUpTo(this, new Intent(this, PhotoListActivity.class));
+            NavUtils.navigateUpTo(this, new Intent(this, MovieListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -48,8 +47,8 @@ public class PhotoDetailActivity extends AppCompatActivity {
         }
 
         Bundle fragmentArguments = new Bundle();
-        fragmentArguments.putString(PhotoDetailFragment.ARG_PHOTO_ID, getIntent().getStringExtra(PhotoDetailFragment.ARG_PHOTO_ID));
-        PhotoDetailFragment fragment = new PhotoDetailFragment();
+        fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_ID, getIntent().getStringExtra(MovieDetailFragment.ARG_MOVIE_ID));
+        MovieDetailFragment fragment = new MovieDetailFragment();
         fragment.setArguments(fragmentArguments);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.photo_detail_container, fragment)

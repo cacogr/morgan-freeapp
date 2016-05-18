@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.arte.photoapp">
+    package="com.arte.morganfreeapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.PhotoListActivity"
+            android:name=".activities.MovieListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.PhotoDetailActivity"
+            android:name=".activities.MovieDetailActivity"
             android:label="@string/title_photo_detail"
-            android:parentActivityName=".activities.PhotoListActivity"
+            android:parentActivityName=".activities.MovieListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.PhotoListActivity" />
+                android:value=".activities.MovieListActivity" />
         </activity>
     </application>
 

@@ -1,0 +1,8 @@
+<com.android.volley.toolbox.NetworkImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/photo_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop"
+    android:padding="16dp"
+    tools:context=".fragments.PhotoDetailFragment" />

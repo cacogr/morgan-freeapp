@@ -12,6 +12,10 @@ import com.arte.morganfreeapp.model.Movie;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+
 public class GetMovieRequest {
 
     private static final String GET_MOVIE_URL = "http://netflixroulette.net/api/api.php?title=";
@@ -24,16 +28,16 @@ public class GetMovieRequest {
 
     private Context mContext;
     private Callbacks mCallbacks;
-    private String mId;
+    private String mTitle;
 
-    public GetMovieRequest(Context context, Callbacks callbacks, String id) {
+    public GetMovieRequest(Context context, Callbacks callbacks, String title) {
         mContext = context;
         mCallbacks = callbacks;
-        mId = id;
+        mTitle = title;
     }
 
     public void execute() {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getGetMovieUrl(mId), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getGetMovieUrl(mTitle), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Movie movie = new Movie();
@@ -58,7 +62,12 @@ public class GetMovieRequest {
         RequestQueueManager.getInstance(mContext).addToRequestQueue(request);
     }
 
-    private String getGetMovieUrl(String id) {
-        return GET_MOVIE_URL + id;
+    private String getGetMovieUrl(String title) {
+        try {
+            return GET_MOVIE_URL + URLEncoder.encode(title, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

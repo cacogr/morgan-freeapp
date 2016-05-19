@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".activities.PhotoListActivity">
+    tools:context=".activities.MovieListActivity">
 
     <!--
     This layout is a two-pane layout for the Photos
@@ -20,13 +20,13 @@
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/photo_list"
-        android:name="com.arte.photoapp.PhotoListFragment"
+        android:name="com.arte.morganfreeman.PhotoListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".activities.PhotoListActivity"
+        tools:context=".activities.MovieListActivity"
         tools:listitem="@layout/photo_list_item" />
 
     <FrameLayout

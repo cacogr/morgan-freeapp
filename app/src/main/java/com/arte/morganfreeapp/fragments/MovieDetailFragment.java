@@ -19,7 +19,7 @@ import com.arte.morganfreeapp.network.RequestQueueManager;
 
 public class MovieDetailFragment extends Fragment implements GetMovieRequest.Callbacks {
 
-    public static final String ARG_MOVIE_ID = "photo_id";
+    public static final String ARG_MOVIE_TITLE = "movie_title";
 
     private Movie mMovie;
     private NetworkImageView mImage;
@@ -32,8 +32,8 @@ public class MovieDetailFragment extends Fragment implements GetMovieRequest.Cal
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_MOVIE_ID)) {
-            String photoId = getArguments().getString(ARG_MOVIE_ID);
+        if (getArguments().containsKey(ARG_MOVIE_TITLE)) {
+            String photoId = getArguments().getString(ARG_MOVIE_TITLE);
             GetMovieRequest request = new GetMovieRequest(getActivity(), this, photoId);
             request.execute();
         }

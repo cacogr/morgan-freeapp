@@ -35,7 +35,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieRecycle
     public void onPhotoClicked(Movie movie) {
         if (mTwoPane) {
             Bundle fragmentArguments = new Bundle();
-            fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_ID, movie.getId());
+            fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_TITLE, movie.getTitle());
             MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(fragmentArguments);
             getSupportFragmentManager().beginTransaction()
@@ -43,7 +43,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieRecycle
                     .commit();
         } else {
             Intent intent = new Intent(this, MovieDetailActivity.class);
-            intent.putExtra(MovieDetailFragment.ARG_MOVIE_ID, movie.getId());
+            intent.putExtra(MovieDetailFragment.ARG_MOVIE_TITLE, movie.getTitle());
             startActivity(intent);
         }
     }

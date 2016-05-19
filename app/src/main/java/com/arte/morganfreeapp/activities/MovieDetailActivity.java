@@ -47,7 +47,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         }
 
         Bundle fragmentArguments = new Bundle();
-        fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_ID, getIntent().getStringExtra(MovieDetailFragment.ARG_MOVIE_ID));
+        fragmentArguments.putString(MovieDetailFragment.ARG_MOVIE_TITLE, getIntent().getStringExtra(MovieDetailFragment.ARG_MOVIE_TITLE));
         MovieDetailFragment fragment = new MovieDetailFragment();
         fragment.setArguments(fragmentArguments);
         getSupportFragmentManager().beginTransaction()

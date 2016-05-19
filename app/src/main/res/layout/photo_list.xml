@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/photo_list"
-    android:name="com.arte.photoapp.PhotoListFragment"
+    android:name="com.arte.morganfreeapp.PhotoListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".activities.PhotoListActivity"
+    tools:context=".activities.MovieListActivity"
     tools:listitem="@layout/photo_list_item" />

@@ -16,7 +16,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_detail);
+        setContentView(R.layout.activity_movie_detail);
         setupActivity();
         setupFragment(savedInstanceState);
     }

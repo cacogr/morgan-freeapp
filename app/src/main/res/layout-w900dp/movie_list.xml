@@ -27,7 +27,7 @@
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".activities.MovieListActivity"
-        tools:listitem="@layout/photo_list_item" />
+        tools:listitem="@layout/movie_list_item" />
 
     <FrameLayout
         android:id="@+id/photo_detail_container"

@@ -26,7 +26,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieRecycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_list);
+        setContentView(R.layout.activity_movie_list);
         setupActivity();
         loadPhotos();
     }
@@ -64,7 +64,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieRecycle
         }
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(getString(R.string.photo_detail_loading));
+        mProgressDialog.setMessage(getString(R.string.movie_detail_loading));
         mProgressDialog.show();
     }
 

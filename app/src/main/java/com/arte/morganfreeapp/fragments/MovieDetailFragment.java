@@ -44,7 +44,7 @@ public class MovieDetailFragment extends Fragment implements GetMovieRequest.Cal
         super.onAttach(context);
 
         mProgressDialog = new ProgressDialog(context);
-        mProgressDialog.setMessage(getString(R.string.photo_detail_loading));
+        mProgressDialog.setMessage(getString(R.string.movie_detail_loading));
         mProgressDialog.show();
     }
 
@@ -57,7 +57,7 @@ public class MovieDetailFragment extends Fragment implements GetMovieRequest.Cal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.photo_detail, container, false);
+        View rootView = inflater.inflate(R.layout.movie_detail, container, false);
 
         mImage = (NetworkImageView) rootView.findViewById(R.id.photo_image);
         if (mMovie != null) {
